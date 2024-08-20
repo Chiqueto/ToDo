@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>ToDo List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Limit Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(!tasks || tasks.length == 0) { %>
+        <tr>
+          <td colspan="3">There's any tasks included!</td>
+        </tr>
+        <% }else{ tasks.forEach((task) => {%>
+        <tr>
+          <td><%= task.description %></td>
+          <td><%= task.date %></td>
+          <td><%= task.status%></td>
+        </tr>
+        <% } ) } %>
+      </tbody>
+    </table>
+    <a href="/task"><button>Add Task</button></a>
+  </body>
+</html>
