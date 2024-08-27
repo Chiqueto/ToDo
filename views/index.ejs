@@ -6,28 +6,47 @@
   </head>
   <body>
     <h1>ToDo List</h1>
+    <a href="/?isOnlyToDo=true" class="filters">Show only To-do</a>
+    <a href="/" class="filters">Show all tasks</a>
     <table>
       <thead>
         <tr>
           <th>Task</th>
           <th>Limit Date</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% if(!tasks || tasks.length == 0) { %>
-        <tr>
-          <td colspan="3">There's any tasks included!</td>
-        </tr>
-        <% }else{ tasks.forEach((task) => {%>
-        <tr>
-          <td><%= task.description %></td>
-          <td><%= task.date %></td>
-          <td><%= task.status%></td>
-        </tr>
-        <% } ) } %>
+        <% if (!tasks || tasks.length == 0) { %>
+          <tr>
+            <td colspan="4">There's any tasks included!</td>
+          </tr>
+        <% } else { %>
+          <% tasks.forEach((task) => { %>
+              <tr class="<%= task.status === false ? 'completed' : '' %>">
+                <td><%= task.description %></td>
+                <td><%= format(task.date, 'dd/MM/yyyy') %></td>
+                <td><%= task.status === true ? 'To do' : 'Completed' %></td>
+                <td class="<%= task.status === false ? 'completedAction' : '' %> actionsSec">
+                  <% if (task.status === true) { %>
+                    <a href="/taskEdit/<%= task.id %>" class="noLine">
+                      <img src="/images/edit.png" alt="Edit" class="actions update"/>
+                    </a>
+                    <a href="/delete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja realmente excluir a Tarefa?')">
+                      <img src="/images/trash.png" alt="Delete"  class="actions delete"/>
+                    </a>
+                    <a href="/taskComplete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja finalizar a tarefa?')">
+                      <img src="/images/check.png" alt="Finish" class="actions finish"/>
+                    </a>
+                  <% } %>
+                </td>
+              </tr>
+          <% }) %>
+        <% } %>
       </tbody>
     </table>
-    <a href="/task"><button>Add Task</button></a>
+    <a href="/taskInsert" class="addTask">Add Task</a>
   </body>
+
 </html>

@@ -1,8 +1,214 @@
+/* Estilos gerais */
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* Very Light Gray */
+  margin: 0;
+  padding: 20px;
+  color: #333; /* Dark Gray */
+}
+
+h1 {
+  text-align: center;
+  color: #27ae60; /* Nephritis Green */
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: #2ecc71; /* Emerald Green */
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #27ae60; /* Nephritis Green */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd; /* Light Gray */
+  text-align: left;
+}
+
+table th {
+  background-color: #2ecc71; /* Emerald Green */
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f1f1f1; /* Light Gray */
+}
+
+table tr:hover {
+  background-color: #e9f5e9; /* Light Green */
+}
+
+/* Estilo das ações */
+.completed {
+  padding: 0;
+  text-decoration: line-through;
+  color: #999; /* Light Gray */
+}
+
+.completedAction {
+  opacity: 0.5;
+  width: 20%;
+}
+
+.completedAction a {
+  pointer-events: none;
+}
+
+img {
+  cursor: pointer;
+}
+
+/* Botão para adicionar tarefa */
+.addTask {
+  float: right;
+  display: inline;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #27ae60; /* Nephritis Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.addTask:hover {
+  background-color: #2ecc71; /* Emerald Green */
+}
+
+/* Links dos filtros */
+.filters {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #2ecc71; /* Emerald Green */
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.filters:hover {
+  background-color: #27ae60; /* Nephritis Green */
+}
+
+.actions {
+  padding: 5px;
+  margin: 0px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.noLine:hover {
+  text-decoration: none;
+}
+
+img.actions {
+  width: 16px;
+}
+
+.delete {
+  background-color: #e74c3c; /* Red */
+}
+
+.update {
+  background-color: #2ecc71; /* Emerald Green */
+}
+
+.finish {
+  background-color: #27ae60; /* Nephritis Green */
+}
+
+.actionsSec {
+  text-align: center;
+}
+
+/* Adaptando para dispositivos móveis */
+@media (max-width: 600px) {
+  table th, table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  img.actions {
+    width: 12px;
+  }
+}
+
+/* Estilos para o formulário */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333; /* Dark Gray */
+}
+
+form input[type="text"],
+form input[type="date"] {
+  width: 96%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd; /* Light Gray */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333; /* Dark Gray */
+  background-color: #f9f9f9; /* Very Light Gray */
+}
+
+form button {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2ecc71; /* Emerald Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #27ae60; /* Nephritis Green */
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  background-color: #2ecc71; /* Emerald Green */
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #27ae60; /* Nephritis Green */
 }

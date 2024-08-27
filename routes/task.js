@@ -1,28 +1,94 @@
 var express = require("express");
 const Task = require("../models/Task");
 var router = express.Router();
+const { format } = require("date-fns");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
+  const onlyToDo = req.query.isOnlyToDo === 'true';
   try {
-    const tasks = await Task.find();
+    let tasks
+    onlyToDo ?  tasks = await Task.find({ status: true }) : tasks = await Task.find()
+    
     console.log(tasks);
-    res.render("index", { tasks });
+    res.render("index", {
+      tasks,
+      format
+    });
   } catch (err) {
     res.status(500).send(err.message);
   }
 });
 
-router.get("/task", (req, res) => {
-  res.render("task");
+router.get("/taskInsert", (req, res) => {
+  res.render("task", {
+    title: "Insert New Task!",
+    btnName: "Insert",
+    task: null,
+    action: "/addTask",
+  });
+});
+
+router.get("/taskEdit/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    res.render("task", {
+      title: "Change Task Informations!",
+      btnName: "Edit",
+      task,
+      format,
+      action: `/update/${req.params.id}`,
+    });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+router.post("/update/:id", async (req, res) => {
+  const { description, date } = req.body;
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id);
+    task.description = description;
+    task.date = date;
+    task.save();
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+
+router.get("/delete/:id", async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).send("Task não encontrada");
+    }
+    res.redirect("/"); // redirecione para a lista de clientes após deletar
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 router.post("/addTask", async (req, res) => {
   const { description, date } = req.body;
   try {
-    const newTask = new Task({ description, date });
+    const adjustedDate = new Date(date);
+    adjustedDate.setUTCHours(12, 0, 0, 0);
+    const newTask = new Task({ description, date:adjustedDate });
     await newTask.save();
-    console.log(`Novo cliente ${newTask.description} cadastrado com sucesso!`);
+    console.log(`Nova tarefa ${newTask.description} cadastrado com sucesso!`);
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+router.get("/taskComplete/:id", async (req, res) => {
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id);
+    task.status = false;
+    task.save();
     res.redirect("/");
   } catch (err) {
     res.status(500).send(err.message);
