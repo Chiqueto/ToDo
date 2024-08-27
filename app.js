@@ -7,10 +7,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 mongoose
-  .connect("mongodb://localhost:27017/activities", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb://localhost:27017/activities",)
   .then(() => {
     console.log("Conexão realizada com MongoDB");
   })
