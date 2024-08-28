@@ -6,6 +6,7 @@ const { format } = require("date-fns");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   const onlyToDo = req.query.isOnlyToDo === 'true';
+  const today = new Date()
   try {
     let tasks
     onlyToDo ?  tasks = await Task.find({ status: true }) : tasks = await Task.find()
@@ -13,7 +14,8 @@ router.get("/", async function (req, res, next) {
     console.log(tasks);
     res.render("index", {
       tasks,
-      format
+      format,
+      today
     });
   } catch (err) {
     res.status(500).send(err.message);

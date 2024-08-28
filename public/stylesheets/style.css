@@ -148,6 +148,10 @@ form textarea {
   resize: none; /* Impede o redimensionamento */
 }
 
+.atrasado{
+  color: #e74c3c;
+}
+
 form .char-count {
   font-size: 14px;
   color: #999; /* Light Gray */
