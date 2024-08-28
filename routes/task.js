@@ -21,23 +21,27 @@ router.get("/", async function (req, res, next) {
 });
 
 router.get("/taskInsert", (req, res) => {
+  const today = format(new Date(), 'yyyy-MM-dd')
   res.render("task", {
     title: "Insert New Task!",
     btnName: "Insert",
     task: null,
     action: "/addTask",
+    today
   });
 });
 
 router.get("/taskEdit/:id", async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
+    const today = format(new Date(), 'yyyy-MM-dd')
     res.render("task", {
       title: "Change Task Informations!",
       btnName: "Edit",
       task,
       format,
       action: `/update/${req.params.id}`,
+      today
     });
   } catch (err) {
     res.status(500).send(err.message);

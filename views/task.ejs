@@ -27,6 +27,7 @@
             id="date"
             value="<%= task ? format(task.date, 'yyyy-MM-dd') : '' %>"
             required
+            min="<%=today%>"
           />
         </div>
         <label for="description">Description:</label>
