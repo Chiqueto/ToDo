@@ -25,7 +25,7 @@
         <% } else { %>
           <% tasks.forEach((task) => { %>
               <tr class="<%= task.status === false ? 'completed' : '' %>">
-                <td><%= task.description %></td>
+                <td><%= task.name %></td>
                 <td><%= format(task.date, 'dd/MM/yyyy') %></td>
                 <td><%= task.status === true ? 'To do' : 'Completed' %></td>
                 <td class="<%= task.status === false ? 'completedAction' : '' %> actionsSec">

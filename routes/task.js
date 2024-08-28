@@ -45,10 +45,11 @@ router.get("/taskEdit/:id", async (req, res) => {
 });
 
 router.post("/update/:id", async (req, res) => {
-  const { description, date } = req.body;
+  const { name, description, date } = req.body;
   try {
     const task = await Task.findByIdAndUpdate(req.params.id);
-    task.description = description;
+    task.name = name
+    task.description = description.trim();
     task.date = date;
     task.save();
     res.redirect("/");
@@ -71,11 +72,12 @@ router.get("/delete/:id", async (req, res) => {
 });
 
 router.post("/addTask", async (req, res) => {
-  const { description, date } = req.body;
+  const { name, description, date } = req.body;
   try {
+    const descriptionFormated = description.trim()
     const adjustedDate = new Date(date);
     adjustedDate.setUTCHours(12, 0, 0, 0);
-    const newTask = new Task({ description, date:adjustedDate });
+    const newTask = new Task({ name, description:descriptionFormated, date:adjustedDate });
     await newTask.save();
     console.log(`Nova tarefa ${newTask.description} cadastrado com sucesso!`);
     res.redirect("/");
