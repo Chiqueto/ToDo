@@ -5,16 +5,18 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    
     <h1>ToDo List</h1>
-    <a href="/?isOnlyToDo=true" class="filters">Show only To-do</a>
+    <button onclick="addParam(`?onlyToDo=true`)" class="filters">Show only To-do</button>
     <a href="/" class="filters">Show all tasks</a>
     <table>
       <thead>
+        <!-- href="/?sortBy=name&sortOrder==='asc'" -->
         <tr>
-          <th>Task <a href="/?sortBy=name&sortOrder === 'asc'"><img src="/images/ordenar.png" alt="order" class="order" data-sort-by="name" ></a></th>
-          <th>Limit Date <img src="/images/ordenar.png" alt="order" class="order" data-sort-by="date" ></th>
-          <th>Status <img src="/images/ordenar.png" alt="order" class="order" data-sort-by="status" ></th>
-          <th>Actions</th>
+          <th>Task <button onclick="addParam(`sortBy=name&sortOrder==='asc'`)"><img src="/images/ordenar.png" alt="order" class="order" data-sort-by="name" ></button></th>
+          <th>Limit Date <button onclick="addParam(`?sortBy=date&sortOrder==='asc'`)"><img src="/images/ordenar.png" alt="order" class="order" data-sort-by="date" ></button></th>
+          <th>Status <button onclick="addParam(`?sortBy=status&sortOrder==='asc'`)"><img src="/images/ordenar.png" alt="order" class="order" data-sort-by="status" ></button></th>
+          <th>Actions</th> 
         </tr>
       </thead>
       <tbody>
@@ -54,5 +56,9 @@
     </table>
     <a href="/taskInsert" class="addTask">Add Task</a>
   </body>
-
+  <script>
+    var urlBase = "<%= urlParams %>";
+    // console.log(teste); // Isso imprimirá "Hello from backend!" no console
+  </script>
+  <script src="/javascripts/script.js"></script>
 </html>

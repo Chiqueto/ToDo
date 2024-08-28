@@ -7,25 +7,26 @@ const { format } = require("date-fns");
 router.get("/", async function (req, res, next) {
   const {onlyToDo, sortBy, sortOrder} = req.query
   const today = new Date()
+  const urlParams = req.originalUrl;
   try {
-    let tasks
-    onlyToDo 
-      ? tasks = await Task.find({ status: true })
-      : tasks = await Task.find()
 
+    let tasks = await Task.find()
+    
+    if (onlyToDo === 'true') {
+      tasks = tasks.filter(task => task.status === true);
+    }
     // Ordenação
     if (sortBy === 'name') {
         tasks.sort((a, b) => sortOrder === 'desc' ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
     } else if (sortBy === 'date') {
         tasks.sort((a, b) => sortOrder === 'desc' ? b.date - a.date : a.date - b.date);
     }
-    
-    console.log(tasks);
     res.render("index", {
       tasks,
       format,
-      today
-    });
+      today,
+      urlParams
+    }); 
   } catch (err) {
     res.status(500).send(err.message);
   }
