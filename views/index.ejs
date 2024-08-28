@@ -26,19 +26,25 @@
           <% tasks.forEach((task) => { %>
               <tr class="<%= task.status === false ? 'completed' : '' %>">
                 <td><%= task.name %></td>
-                <td class="<%= task.date < today ? 'atrasado' : '' %>"><%= format(task.date, 'dd/MM/yyyy') %></td>
+                <td class="<%= task.date < today ? 'late' : '' %>"><%= format(task.date, 'dd/MM/yyyy') %></td>
                 <td><%= task.status === true ? 'To do' : 'Completed' %></td>
                 <td class="<%= task.status === false ? 'completedAction' : '' %> actionsSec">
                   <% if (task.status === true) { %>
-                    <a href="/taskEdit/<%= task.id %>" class="noLine" >
-                      <img src="/images/edit.png" alt="Edit" class="actions update"/>
-                    </a>
-                    <a href="/delete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja realmente excluir a Tarefa?')">
-                      <img src="/images/trash.png" alt="Delete"  class="actions delete"/>
-                    </a>
-                    <a href="/taskComplete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja finalizar a tarefa?')">
-                      <img src="/images/check.png" alt="Finish" class="actions finish"/>
-                    </a>
+                    <abbr title="Edit task">
+                      <a href="/taskEdit/<%= task.id %>" class="noLine" >
+                        <img src="/images/edit.png" alt="Edit" class="actions update"/>
+                      </a>
+                    </abbr>
+                    <abbr title="Delete task">
+                      <a href="/delete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja realmente excluir a Tarefa?')">
+                        <img src="/images/trash.png" alt="Delete"  class="actions delete"/>
+                      </a>
+                    </abbr>
+                    <abbr title="Finish task">
+                      <a href="/taskComplete/<%= task.id %>" class="noLine" onclick="return confirm('Deseja finalizar a tarefa?')">
+                        <img src="/images/check.png" alt="Finish" class="actions finish"/>
+                      </a>
+                    </abbr>
                   <% } %>
                 </td>
               </tr>

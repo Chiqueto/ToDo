@@ -148,8 +148,12 @@ form textarea {
   resize: none; /* Impede o redimensionamento */
 }
 
-.atrasado{
+.late{
   color: #e74c3c;
+}
+
+abbr{
+  text-decoration: none;
 }
 
 form .char-count {
