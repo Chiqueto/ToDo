@@ -18,6 +18,7 @@
           id="name"
           value="<%= task ? task.name : '' %>"
           required
+          <%= mode == 'view' && 'disabled' %>
         />
         <div class="form-group">
           <label for="date">Limit Date:</label>
@@ -28,6 +29,8 @@
             value="<%= task ? format(task.date, 'yyyy-MM-dd') : '' %>"
             required
             min="<%=today%>"
+            <%= mode == 'view' && 'disabled' %>
+
           />
         </div>
         <label for="description">Description:</label>
@@ -38,6 +41,8 @@
           required
           placeholder="Descrição..."
           maxlength="200"
+          <%= mode == 'view' && 'disabled' %>
+
         ><%= task ? task.description : '' %></textarea>
       </div>
       <button type="submit"><%= btnName %></button>

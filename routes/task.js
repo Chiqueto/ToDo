@@ -24,12 +24,14 @@ router.get("/", async function (req, res, next) {
 
 router.get("/taskInsert", (req, res) => {
   const today = format(new Date(), 'yyyy-MM-dd')
+  const mode = 'insert'
   res.render("task", {
     title: "Insert New Task!",
     btnName: "Insert",
     task: null,
     action: "/addTask",
-    today
+    today,
+    mode
   });
 });
 
@@ -37,13 +39,15 @@ router.get("/taskEdit/:id", async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
     const today = format(new Date(), 'yyyy-MM-dd')
+    const mode = 'edit'
     res.render("task", {
       title: "Change Task Informations!",
       btnName: "Edit",
       task,
       format,
       action: `/update/${req.params.id}`,
-      today
+      today,
+      mode
     });
   } catch (err) {
     res.status(500).send(err.message);
@@ -87,6 +91,25 @@ router.post("/addTask", async (req, res) => {
     await newTask.save();
     console.log(`Nova tarefa ${newTask.description} cadastrado com sucesso!`);
     res.redirect("/");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+router.get("/taskView/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    const today = format(new Date(), 'yyyy-MM-dd')
+    const mode = 'view'
+    res.render("task", {
+      title: "View Task Informations!",
+      btnName: "Confirm",
+      task,
+      format,
+      action: "/",
+      mode,
+      today
+    });
   } catch (err) {
     res.status(500).send(err.message);
   }
