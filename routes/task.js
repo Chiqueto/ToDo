@@ -5,11 +5,20 @@ const { format } = require("date-fns");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  const onlyToDo = req.query.isOnlyToDo === 'true';
+  const {onlyToDo, sortBy, sortOrder} = req.query
   const today = new Date()
   try {
     let tasks
-    onlyToDo ?  tasks = await Task.find({ status: true }) : tasks = await Task.find()
+    onlyToDo 
+      ? tasks = await Task.find({ status: true })
+      : tasks = await Task.find()
+
+    // Ordenação
+    if (sortBy === 'name') {
+        tasks.sort((a, b) => sortOrder === 'desc' ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
+    } else if (sortBy === 'date') {
+        tasks.sort((a, b) => sortOrder === 'desc' ? b.date - a.date : a.date - b.date);
+    }
     
     console.log(tasks);
     res.render("index", {

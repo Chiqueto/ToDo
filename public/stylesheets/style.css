@@ -110,6 +110,14 @@ img {
   border-radius: 4px;
 }
 
+.order{
+  float: right;
+}
+
+img.order{
+  width: 16px;
+}
+
 .noLine:hover {
   text-decoration: none;
 }
