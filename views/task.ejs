@@ -44,8 +44,8 @@
           <%= mode == 'view' && 'disabled' %>
 
         ><%= task ? task.description : '' %></textarea>
+        <button class="<%= mode == 'view' ? 'off' : '' %>" type="submit"><%= btnName %></button>
       </div>
-      <button type="submit"><%= btnName %></button>
     </form>
   </body>
 </html>
