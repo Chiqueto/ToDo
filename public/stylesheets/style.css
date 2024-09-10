@@ -1,10 +1,10 @@
 /* Estilos gerais */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9; /* Very Light Gray */
+  background-color: #f9f9f9; 
   margin: 0;
   padding: 20px;
-  color: #333; /* Dark Gray */
+  color: #333; 
 }
 
 
@@ -12,24 +12,24 @@ body {
 
 h1 {
   text-align: center;
-  color: #27ae60; /* Nephritis Green */
+  color: #27ae60; 
   font-size: 36px;
   margin-bottom: 20px;
 }
 
 a {
   text-decoration: none;
-  color: #000000; /* Emerald Green */
+  color: #000000; 
 }
 
 a:hover {
   text-decoration: underline;
-  color: white; /* Nephritis Green */
+  color: white; 
 }
 
 .taskName a:hover{
   text-decoration: none;
-  color: #00ff5e; /* Dark Gray */
+  color: #00ff5e; 
 }
 
 table {
@@ -40,34 +40,34 @@ table {
 
 table th, table td {
   padding: 12px;
-  border: 1px solid #ddd; /* Light Gray */
+  border: 1px solid #ddd; 
   text-align: left;
 }
 
 table th {
-  background-color: #2ecc71; /* Emerald Green */
+  background-color: #2ecc71;
   color: white;
 }
 
 table tr:nth-child(even) {
-  background-color: #f1f1f1; /* Light Gray */
+  background-color: #f1f1f1; 
 }
 
 table tr.completed:nth-child(even) {
-  background-color: #bcf7bc; /* Light Gray */
+  background-color: #bcf7bc; 
 }
 
 table tr.completed:hover {
-  background-color: #e9f5e9; /* Light Green */
+  background-color: #e9f5e9; 
 }
 
 table tr:hover {
-  background-color: #e9f5e9; /* Light Green */
+  background-color: #e9f5e9; 
 }
 /* Estilo das ações */
 
 .focused {
-  background-color: #1d7d45; /* Destaque para o filtro ativo */
+  background-color: #1d7d45; 
   color: white;
   border: 2px solid rgb(0, 0, 0);
 }
@@ -97,7 +97,7 @@ img {
   display: inline;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #27ae60; /* Nephritis Green */
+  background-color: #27ae60; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -106,7 +106,7 @@ img {
 }
 
 .addTask:hover {
-  background-color: #2ecc71; /* Emerald Green */
+  background-color: #2ecc71; 
   color: white;
 }
 
@@ -114,7 +114,7 @@ img {
 .filter-button {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #2ecc71; /* Emerald Green */
+  background-color: #2ecc71; 
   color: white;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -128,14 +128,14 @@ img {
 }
 
 .filter-button:hover {
-  background-color: #27ae60; /* Nephritis Green */
+  background-color: #27ae60; 
   color: white;
   pointer-events: visible;
   cursor: pointer;
 }
 
 .filter-button.focused, #showOnlyTodo.focused {
-  background-color: #2ab363; /* Destaque para o filtro ativo */
+  background-color: #2ab363; 
   color: white;
   border: 2px solid rgb(0, 0, 0);
 }
@@ -172,28 +172,28 @@ img.actions {
 }
 
 .delete {
-  background-color: #e74c3c; /* Red */
+  background-color: #e74c3c; 
 }
 
 .delete:hover{
-  background-color: #9d372b; /* Red */
+  background-color: #9d372b; 
 }
 
 .update {
-  background-color: #cccc2e; /* Emerald Green */
+  background-color: #cccc2e; 
 }
 
 .update:hover {
-  background-color: #989022; /* Emerald Green */
+  background-color: #989022; 
 }
 
 .finish {
-  background-color: #27ae60; /* Nephritis Green */
+  background-color: #27ae60; 
 }
 
 
 .finish:hover {
-  background-color: #1d7d45; /* Nephritis Green */
+  background-color: #1d7d45; 
 }
 
 .undo{
@@ -201,7 +201,7 @@ img.actions {
 }
 
 .undo:hover{
-  background-color: #9d372b; /* Red */
+  background-color: #9d372b; 
 }
 
 .actionsSec {
@@ -214,12 +214,12 @@ form textarea {
   height: 100px;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ddd; /* Light Gray */
+  border: 1px solid #ddd; 
   border-radius: 4px;
   font-size: 16px;
-  color: #333; /* Dark Gray */
-  background-color: #f9f9f9; /* Very Light Gray */
-  resize: none; /* Impede o redimensionamento */
+  color: #333; 
+  background-color: #f9f9f9; 
+  resize: none; 
 }
 
 .late{
@@ -233,7 +233,7 @@ abbr{
 
 form .char-count {
   font-size: 14px;
-  color: #999; /* Light Gray */
+  color: #999; 
   text-align: right;
 }
 
@@ -254,7 +254,11 @@ form .char-count {
   }
 
   img.actions {
-    width: 12px;
+    width: 8px;
+  }
+
+  .actions {
+    padding: 3px;
   }
 }
 
@@ -272,7 +276,7 @@ form label {
   display: block;
   font-size: 16px;
   margin-bottom: 8px;
-  color: #333; /* Dark Gray */
+  color: #333; 
 }
 
 form input[type="text"],
@@ -280,18 +284,18 @@ form input[type="date"] {
   width: 96%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ddd; /* Light Gray */
+  border: 1px solid #ddd; 
   border-radius: 4px;
   font-size: 16px;
-  color: #333; /* Dark Gray */
-  background-color: #f9f9f9; /* Very Light Gray */
+  color: #333; 
+  background-color: #f9f9f9; 
 }
 
 form button {
   display: inline-block;
   width: 100%;
   padding: 10px;
-  background-color: #2ecc71; /* Emerald Green */
+  background-color: #2ecc71; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -300,7 +304,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #27ae60; /* Nephritis Green */
+  background-color: #27ae60; 
   color: white;
 }
 
@@ -308,7 +312,7 @@ form button:hover {
   display: inline-block;
   padding: 10px 15px;
   margin-bottom: 20px;
-  background-color: #2ecc71; /* Emerald Green */
+  background-color: #2ecc71;
   color: white;
   border-radius: 5px;
   text-decoration: none;
@@ -317,5 +321,5 @@ form button:hover {
 }
 
 .back-button:hover {
-  background-color: #27ae60; /* Nephritis Green */
+  background-color: #27ae60; 
 }

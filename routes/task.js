@@ -69,7 +69,9 @@ router.post("/update/:id", async (req, res) => {
     const task = await Task.findByIdAndUpdate(req.params.id);
     task.name = name;
     task.description = description.trim();
-    task.date = date;
+    const adjustedDate = new Date(date);
+    adjustedDate.setUTCHours(12, 0, 0, 0);
+    task.date = adjustedDate;
     task.save();
     res.redirect("/");
   } catch (err) {

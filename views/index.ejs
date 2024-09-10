@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo List</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <% function isDateGreaterThan(date1, date2) { const d1 = new Date(date1);
+    const d2 = new Date(date2); // Zera a hora para comparar apenas as datas
+    d1.setHours(0, 0, 0, 0); d2.setHours(0, 0, 0, 0); return d1 < d2; } %>
+
     <h1>ToDo List</h1>
+    <a
+      href="/"
+      class="filter-button <%= onlyToDo === 'true' ? '' : 'focused' %>"
+    >
+      Show all tasks
+    </a>
     <button
       id="showOnlyTodo"
       onclick="addParam(`?onlyToDo=true`)"
@@ -13,12 +25,6 @@
     >
       Show only To-do
     </button>
-    <a
-      href="/"
-      class="filter-button <%= onlyToDo === 'true' ? '' : 'focused' %>"
-    >
-      Show all tasks
-    </a>
 
     <table>
       <thead>
@@ -39,7 +45,7 @@
           <td class="taskName">
             <a href="/taskView/<%= task.id %>"><%= task.name %></a>
           </td>
-          <td class="<%= task.date < today ? 'late' : '' %>">
+          <td class="<%= isDateGreaterThan(task.date, today) ? 'late' : '' %>">
             <%= format(task.date, 'dd/MM/yyyy') %>
           </td>
           <td><%= task.status === true ? 'To do' : 'Completed' %></td>
@@ -61,7 +67,7 @@
               <a
                 href="/delete/<%= task.id %>"
                 class="noLine"
-                onclick="return confirm('Deseja realmente excluir a Tarefa?')"
+                onclick="return confirm('Do you really want to delete the Task?')"
               >
                 <img
                   src="/images/trash.png"
@@ -75,7 +81,7 @@
               <a
                 href="/taskComplete/<%= task.id %>"
                 class="noLine"
-                onclick="return confirm('Deseja finalizar a tarefa?')"
+                onclick="return confirm('Do you want to finish the task?')"
               >
                 <img
                   src="/images/check.png"
@@ -89,7 +95,7 @@
               <a
                 href="/taskUndo/<%= task.id %>"
                 class="noLine"
-                onclick="return confirm('Deseja desfazer a conclusão da tarefa?')"
+                onclick="return confirm('Do you want to undo the task completion?')"
               >
                 <img src="/images/undo.png" alt="Undo" class="actions undo" />
               </a>
