@@ -5,7 +5,7 @@ const { format } = require("date-fns");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  const { onlyToDo, sortBy, sortOrder } = req.query;
+  const { onlyToDo, sortOrder } = req.query;
   const today = new Date();
   const urlParams = req.originalUrl;
   try {
@@ -24,6 +24,7 @@ router.get("/", async function (req, res, next) {
       format,
       today,
       urlParams,
+      onlyToDo,
     });
   } catch (err) {
     res.status(500).send(err.message);
@@ -130,6 +131,17 @@ router.get("/taskComplete/:id", async (req, res) => {
   try {
     const task = await Task.findByIdAndUpdate(req.params.id);
     task.status = false;
+    task.save();
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+router.get("/taskUndo/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    task.status = true;
     task.save();
     res.redirect("/");
   } catch (err) {

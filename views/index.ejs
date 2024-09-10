@@ -6,13 +6,22 @@
   </head>
   <body>
     <h1>ToDo List</h1>
-    <button onclick="addParam(`?onlyToDo=true`)" class="filters">
+    <button
+      id="showOnlyTodo"
+      onclick="addParam(`?onlyToDo=true`)"
+      class="filter-button <%= onlyToDo === 'true' ? 'focused' : '' %>"
+    >
       Show only To-do
     </button>
-    <a href="/" class="filters">Show all tasks</a>
+    <a
+      href="/"
+      class="filter-button <%= onlyToDo === 'true' ? '' : 'focused' %>"
+    >
+      Show all tasks
+    </a>
+
     <table>
       <thead>
-        <!-- href="/?sortBy=name&sortOrder==='asc'" -->
         <tr>
           <th>Task</th>
           <th>Limit Date</th>
@@ -34,14 +43,19 @@
             <%= format(task.date, 'dd/MM/yyyy') %>
           </td>
           <td><%= task.status === true ? 'To do' : 'Completed' %></td>
-          <td
-            class="<%= task.status === false ? 'completedAction' : '' %> actionsSec"
-          >
-            <% if (task.status === true) { %>
+          <td class="actionsSec">
             <abbr title="Edit task">
+              <% if (task.status === true) { %>
               <a href="/taskEdit/<%= task.id %>" class="noLine">
                 <img src="/images/edit.png" alt="Edit" class="actions update" />
               </a>
+              <% } else { %>
+              <img
+                src="/images/edit_X.png"
+                alt="Edit"
+                class="actions inactive"
+              />
+              <% } %>
             </abbr>
             <abbr title="Delete task">
               <a
@@ -56,6 +70,7 @@
                 />
               </a>
             </abbr>
+            <% if (task.status === true) { %>
             <abbr title="Finish task">
               <a
                 href="/taskComplete/<%= task.id %>"
@@ -69,7 +84,17 @@
                 />
               </a>
             </abbr>
-            <% } %>
+            <% }else { %>
+            <abbr title="Unfinalize task">
+              <a
+                href="/taskUndo/<%= task.id %>"
+                class="noLine"
+                onclick="return confirm('Deseja desfazer a conclusão da tarefa?')"
+              >
+                <img src="/images/undo.png" alt="Undo" class="actions undo" />
+              </a>
+            </abbr>
+            <% }%>
           </td>
         </tr>
         <% }) %> <% } %>
@@ -79,7 +104,6 @@
   </body>
   <script>
     var urlBase = "<%= urlParams %>";
-    // console.log(teste); // Isso imprimirá "Hello from backend!" no console
   </script>
   <script src="/javascripts/script.js"></script>
 </html>
